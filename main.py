@@ -3,17 +3,22 @@ def get_book_text(path):
         contents = f.read()
         return contents
     
-def find_words(contents):
+def find_words(contents):    
+    words = contents.split()
+    counter = 0
+    for word in words:
+        counter += 1   
 
-    pass
+    return counter
 
 
 def main():
     path = "/home/eksudee/workspaces/github.com/Akyas-S/bookbot/books/frankenstein.txt"
 
     contents = get_book_text(path)
+    num_words = find_words(contents)
 
-    print(contents)
+    print(f"{num_words} words found in the document")
 
 
 
