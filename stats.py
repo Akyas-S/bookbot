@@ -15,5 +15,12 @@ def char_count(contents):
             char_dict[char] += 1
         else:
             char_dict[char] = 1
-    #print (char_dict)   
     return char_dict
+
+
+def sort_char_count(dict):
+    
+    sorted_list = sorted(dict.items(), key= lambda x: x[1], reverse=True)
+    #for key, value in test:
+        #print(f"{key}: {value}")
+    return sorted_list
