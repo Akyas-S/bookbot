@@ -10,28 +10,10 @@ def get_book_text(path):
         contents = f.read()
         return contents
     
-def get_input():
-    parser = argparse.ArgumentParser(
-                    prog='BookBot',
-                    description='Parses through books to return the word count and individual character count',
-                    epilog='Boot.dev')
-
-    parser.add_argument('filepath', help='Enter the file path to book eg: books/"bookname"')
-
-    args = parser.parse_args()
-
-    return args
-    
 def main():
-    #prints instructions if wrong
-    print(get_input())
-    
     
     path = sys.argv[1]
-    cmplt_path = "/home/eksudee/workspaces/github.com/Akyas-S/bookbot/" + path
-
-    
-    contents = get_book_text(cmplt_path)
+    contents = get_book_text(path)
 
     num_words = find_num_words(contents)
 
@@ -49,5 +31,9 @@ def main():
         print(f"{key}: {value}")
     print("============= END ===============")
 
-main()
-
+    
+if len(sys.argv) < 2 or len(sys.argv) > 2:
+    print('Usage: python3 main.py <path_to_book>')
+    (sys.exit(1))
+else:
+    main()
