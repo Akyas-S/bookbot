@@ -2,27 +2,44 @@
 from stats import find_num_words
 from stats import char_count
 from stats import sort_char_count
+import argparse
+import sys
 
 def get_book_text(path):
     with open(path) as f:
         contents = f.read()
         return contents
     
-def main():
-    path = "/home/eksudee/workspaces/github.com/Akyas-S/bookbot/books/frankenstein.txt"
+def get_input():
+    parser = argparse.ArgumentParser(
+                    prog='BookBot',
+                    description='Parses through books to return the word count and individual character count',
+                    epilog='Boot.dev')
 
-    # reads the book
-    contents = get_book_text(path)
+    parser.add_argument('filepath', help='Enter the file path to book eg: books/"bookname"')
+
+    args = parser.parse_args()
+
+    return args
+    
+def main():
+    #prints instructions if wrong
+    print(get_input())
+    
+    
+    path = sys.argv[1]
+    cmplt_path = "/home/eksudee/workspaces/github.com/Akyas-S/bookbot/" + path
+
+    
+    contents = get_book_text(cmplt_path)
 
     num_words = find_num_words(contents)
 
-    # dict of the number of times each character occurs
     num_char = char_count(contents)
-
-    #n.char sorted by decending order 
+ 
     sorted_num_char = sort_char_count(num_char)
 
-    # sylised print
+    # sylized print
     print("============ BOOKBOT ============")
     print(f"Analyzing book found at {path}")
     print("----------- Word Count ----------")
